@@ -3,7 +3,8 @@ const favoritesController = require("../../controllers/favoritesController");
 
 
 router.route("/")
-  .get(favoritesController.findAll);
+  .get(favoritesController.findAll)
+  .post(favoritesController.create);
 
 
 
