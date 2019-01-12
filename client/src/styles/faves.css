@@ -2,8 +2,8 @@
   position: relative;
   width: 80%;
 }
-.rel-cocktail-card {
-  max-width: 300px;
+.cocktail-card {
+  max-width: 250px;
 }
 .image {
   opacity: 1;
@@ -26,12 +26,12 @@
   width: 300px;
 }
 
-.rel-cocktail-card:hover .image {
+.cocktail-card:hover .image {
   color: #ffffff;
   background-color: rgba(0,0,0,0.7) !important;
 }
 
-.rel-cocktail-card:hover .middle {
+.cocktail-card:hover .middle {
   opacity: 1;
 }
 
@@ -52,11 +52,4 @@
   cursor:pointer;
   overflow: hidden;
   outline:none;
-}
-
-/* Recipe Modal: will move to Recipe Modal CSS */
-
-.modal-content {
-  color: #ffffff;
-  background-color: rgba(0,0,0,0.7) !important;
 }
