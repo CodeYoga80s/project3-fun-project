@@ -1,7 +1,21 @@
+// import React from 'react';
+// import { BrowserRouter as Router } from 'react-router-dom';
+
+// import Navigation from '../Navigation';
+
+// const App = () => (
+//   <Router>
+//     <Navigation />
+//   </Router>
+// );
+
+// export default App;
+
 import React, { Component } from "react";
-import logo from "./logo.svg";
-import "./App.css";
-import API from "./utils/API";
+import logo from "../../logo.svg";
+import "../../App.css";
+import API from "../../utils/API";
+
 
 
 
