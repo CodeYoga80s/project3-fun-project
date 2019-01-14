@@ -25,6 +25,8 @@
     "firebase": "^5.7.3",
     "if-env": "^1.0.4",
     "mongoose": "^5.4.2",
+    "react-awesome-modal": "^2.0.5",
+    "react-bootstrap": "^0.32.4",
     "react-router-dom": "^4.3.1",
     "recompose": "^0.30.0"
   }

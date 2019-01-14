@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
-
+import Jumbotron from "../Jumbotron";
 import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
+import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
+import Modal from 'react-awesome-modal';
+import "./SignUp.css";
 
 const SignUpPage = () => (
   <div>
-    <h1>SignUp</h1>
+    {/* <h1>SignUp</h1> */}
     <SignUpForm />
   </div>
 );
@@ -17,6 +20,7 @@ const INITIAL_STATE = {
   passwordOne: '',
   passwordTwo: '',
   error: null,
+  visible: true
 };
 
 class SignUpFormBase extends Component {
@@ -25,6 +29,14 @@ class SignUpFormBase extends Component {
 
     this.state = { ...INITIAL_STATE };
   }
+
+  showModal = () => {
+    this.setState({ visible: true });
+  };
+
+  hideModal = () => {
+    this.setState({ visible: false });
+  };
 
   onSubmit = event => {
     const { username, email, passwordOne } = this.state;
@@ -61,14 +73,22 @@ class SignUpFormBase extends Component {
       username === '';
 
     return (
+        <div>
+        <Jumbotron>
+        <h1 className="display-4">IMBIBE</h1>
+        <p className="lead">Recipes for the homegrown mixologist.</p>
+        </Jumbotron>
+        <Modal visible={this.state.visible} width="400" height="400" effect="fadeInUp" onClickAway={() => this.hideModal()}>
+        <div className="SignUp">
       <form onSubmit={this.onSubmit}>
         <input
           name="username"
           value={username}
           onChange={this.onChange}
           type="text"
-          placeholder="Full Name"
+          placeholder="First Name"
         />
+        <br></br>
         <input
           name="email"
           value={email}
@@ -76,6 +96,7 @@ class SignUpFormBase extends Component {
           type="text"
           placeholder="Email Address"
         />
+        <br></br>
         <input
           name="passwordOne"
           value={passwordOne}
@@ -83,12 +104,16 @@ class SignUpFormBase extends Component {
           type="password"
           placeholder="Password"
         />
+        <br></br>
         <button disabled={isInvalid} type="submit">
           Sign Up
         </button>
 
         {error && <p>{error.message}</p>}
       </form>
+      </div>
+      </Modal>
+      </div>
     );
   }
 }
