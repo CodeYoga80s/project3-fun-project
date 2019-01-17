@@ -42,22 +42,33 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+
+        <div>
+          <Link to="/">Home</Link>
+          <Link to="#">Sign-Up</Link>
+          <Link to="#">Favorites</Link>
+        </div>
+
         <div class="jumbotron jumbotron-fluid">
           <div class="container">
             <h1 class="display-4">IMBIBE</h1>
-            <p class="lead">Recipes for the homegrown mixologist.</p>
+            <p class="lead">Drink Recipes for the Homegrown Mixologist.</p>
           </div>
         </div>
 
         
         <div class="container">
 
-          <Link to="/search-results/drinks">Drink Name</Link>
-          
-          <button>Search by Drink</button>
-          <button>Search by Ingredient</button>
+          <h3>Search by...</h3>
 
-          <Link to="/search-results/ingredient">Ingredient Name</Link>
+          <button>
+            <Link to="/search-results/drinks">Drink Name</Link>
+          </button>
+
+          <button>
+            <Link to="/search-results/ingredient">Ingredient Name</Link>
+          </button>
+
         </div>
 
       

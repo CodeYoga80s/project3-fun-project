@@ -19,5 +19,10 @@ export default {
   // Get the drink with the given id
   getDrinkById: function(id) {
     return axios.get("https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=" + id);
+  },
+
+  // Get a random drink
+  getRandomDrink: function() {
+    return axios.get("https://www.thecocktaildb.com/api/json/v1/1/random.php");
   }
 };

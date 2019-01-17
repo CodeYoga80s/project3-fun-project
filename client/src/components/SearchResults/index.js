@@ -2,11 +2,16 @@ import React, { Component } from "react";
 import logo from "../../logo.svg";
 import "../../App.css";
 import API from "../../utils/API";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 
 
 
 class SearchResults extends Component {
+
+  /* componentDidMount() {
+    API.getRandomDrink();
+  } */
 
   /* state = {
     favoritesArray: [],
@@ -23,31 +28,47 @@ class SearchResults extends Component {
   
   }; */
 
-
+  // How to get ID
+  /* {this.props.match.params.id} */
 
 
   render() {
     return (
       <div className="App">
+
+        <div>
+          <Link to="/">Home</Link>
+          <Link to="#">Sign-Up</Link>
+          <Link to="#">Favorites</Link>
+        </div>
+
         <div class="jumbotron jumbotron-fluid">
           <div class="container">
-            <h1 class="display-4">SearchResults</h1>
-            <p class="lead">Recipes for the homegrown mixologist.</p>
+            <h1 class="display-4">Recipe Results</h1>
+            <p class="lead">Now Mix It, Mix It Real Good.</p>
           </div>
         </div>
 
-        {this.props.match.params.id}
+        {/* {this.props.match.params.id} */}
         
         <div class="container">
 
-        <form>
-            <input type="text" name="search" placeholder="Enter a liquor or spirit" id="ingredient-search"/>
-        </form>
+          <h3>What can I get for you?</h3>
 
-          <button>Search by Ingredient</button>
+          <form>
+            <input type="text" name="search" placeholder="Enter here..." id="ingredient-search"/>
+          </form>
+
+          <button>Search</button>
+
         </div>
 
+        <h3>Time to Mix!</h3>
+
         <div class="search-results">
+
+          <img src="https://www.thecocktaildb.com/images/media/drink/wpxpvu1439905379.jpg" alt="Margarita"/>
+          <Link to="#"><p class="lead">Margarita</p></Link>
 
         </div>
 
