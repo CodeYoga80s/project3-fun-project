@@ -1,25 +1,12 @@
-// import React from 'react';
-// import { BrowserRouter as Router } from 'react-router-dom';
-
-// import Navigation from '../Navigation';
-
-// const App = () => (
-//   <Router>
-//     <Navigation />
-//   </Router>
-// );
-
-// export default App;
-
 import React, { Component } from "react";
 import logo from "../../logo.svg";
 import "../../App.css";
 import API from "../../utils/API";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 
 
-class App extends Component {
+
+class SearchResults extends Component {
 
   /* state = {
     favoritesArray: [],
@@ -44,20 +31,24 @@ class App extends Component {
       <div className="App">
         <div class="jumbotron jumbotron-fluid">
           <div class="container">
-            <h1 class="display-4">IMBIBE</h1>
+            <h1 class="display-4">SearchResults</h1>
             <p class="lead">Recipes for the homegrown mixologist.</p>
           </div>
         </div>
 
+        {this.props.match.params.id}
         
         <div class="container">
 
-          <Link to="/search-results/drinks">Drink Name</Link>
-          
-          <button>Search by Drink</button>
-          <button>Search by Ingredient</button>
+        <form>
+            <input type="text" name="search" placeholder="Enter a liquor or spirit" id="ingredient-search"/>
+        </form>
 
-          <Link to="/search-results/ingredient">Ingredient Name</Link>
+          <button>Search by Ingredient</button>
+        </div>
+
+        <div class="search-results">
+
         </div>
 
       
@@ -66,4 +57,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default SearchResults;
