@@ -9,17 +9,55 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 class SearchResults extends Component {
 
-  /* componentDidMount() {
-    API.getRandomDrink();
-  } */
-
-  /* state = {
+  state = {
     favoritesArray: [],
-    cocktailID:""
+    cocktailID:"",
+    title: "",
+    image: "",
+    searchInput: ""
   };
 
+ /*  componentDidMount() {
+    this.displayRandomDrink();
+  };
 
-  addTofavorites = event => {
+  displayRandomDrink = () => {
+    API.getDrinksByDrink("margarita")
+      .then(res =>
+        this.setState({title: res.data.drinks[0].strDrink})
+      )
+      .catch(err => console.log(err));
+  }; */
+
+  displayDrinksByDrink = event => {
+    console.log(this.state.searchInput + "search is here");
+    API.getDrinksByDrink(this.state.searchInput)
+      .then(res =>
+        this.setState({title: res.data.drinks[0].strDrink, image: res.data.drinks[0].strDrinkThumb})
+      )
+      .catch(err => console.log(err));
+  };
+
+  handleChange = event => {
+    const {name, value} = event.target;
+    this.setState({
+      [name]: value
+    });
+  };
+
+  onSubmit = event => {
+    console.log(event.target);
+    event.preventDefault();
+  };
+
+/* 
+  handleChange({target}) {
+    this.setState({
+      title: target.value
+    });
+  }; */
+
+  /*addTofavorites = event => {
     event.preventDefault();
     console.log(event.target.value);
     API.saveFavorite({cocktailID: event.target.value})
@@ -33,6 +71,9 @@ class SearchResults extends Component {
 
 
   render() {
+
+  
+
     return (
       <div className="App">
 
@@ -56,16 +97,19 @@ class SearchResults extends Component {
           <h3>What can I get for you?</h3>
 
           <form>
-            <input type="text" name="search" placeholder="Enter here..." id="ingredient-search"/>
+            <input type="text" name="searchInput" placeholder="Enter here..." id="ingredient-search" value={this.state.searchInput} onChange={this.handleChange}/>
           </form>
 
-          <button>Search</button>
+          <button type="submit" onClick={this.displayDrinksByDrink}>Search</button>
 
         </div>
 
         <h3>Time to Mix!</h3>
 
         <div className="search-results">
+
+          <img src={this.state.image} alt={this.state.title}/>
+          <p className="lead">{this.state.title}</p>
 
           <img src="https://www.thecocktaildb.com/images/media/drink/wpxpvu1439905379.jpg" alt="Margarita"/>
           <Link to="#"><p className="lead">Margarita</p></Link>
