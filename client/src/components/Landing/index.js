@@ -45,19 +45,19 @@ class App extends Component {
 
         <div>
           <Link to="/">Home</Link>
-          <Link to="#">Sign-Up</Link>
+          <Link to="/signup">Sign-Up</Link>
           <Link to="#">Favorites</Link>
         </div>
 
-        <div class="jumbotron jumbotron-fluid">
-          <div class="container">
-            <h1 class="display-4">IMBIBE</h1>
-            <p class="lead">Drink Recipes for the Homegrown Mixologist.</p>
+        <div className="jumbotron jumbotron-fluid">
+          <div className="container">
+            <h1 className="display-4">IMBIBE</h1>
+            <p className="lead">Drink Recipes for the Homegrown Mixologist.</p>
           </div>
         </div>
 
         
-        <div class="container">
+        <div className="container">
 
           <h3>Search by...</h3>
 
