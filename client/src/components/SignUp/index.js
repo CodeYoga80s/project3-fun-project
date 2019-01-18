@@ -36,7 +36,6 @@ class SignUpFormBase extends Component {
 
   hideModal = () => {
     this.setState({ visible: false });
-    this.props.history.push(ROUTES.LANDING);
   };
 
   onSubmit = event => {
@@ -75,6 +74,10 @@ class SignUpFormBase extends Component {
 
     return (
         <div>
+        <Jumbotron>
+        <h1 className="display-4">IMBIBE</h1>
+        <p className="lead">Recipes for the homegrown mixologist.</p>
+        </Jumbotron>
         <Modal visible={this.state.visible} width="400" height="400" effect="fadeInUp" onClickAway={() => this.hideModal()}>
         <div className="SignUp">
       <form onSubmit={this.onSubmit}>
