@@ -42,16 +42,16 @@ class SearchResults extends Component {
           <Link to="#">Favorites</Link>
         </div>
 
-        <div class="jumbotron jumbotron-fluid">
-          <div class="container">
-            <h1 class="display-4">Recipe Results</h1>
-            <p class="lead">Now Mix It, Mix It Real Good.</p>
+        <div className="jumbotron jumbotron-fluid">
+          <div className="container">
+            <h1 className="display-4">Recipe Results</h1>
+            <p className="lead">Now Mix It, Mix It Real Good.</p>
           </div>
         </div>
 
         {/* {this.props.match.params.id} */}
         
-        <div class="container">
+        <div className="container">
 
           <h3>What can I get for you?</h3>
 
@@ -65,10 +65,10 @@ class SearchResults extends Component {
 
         <h3>Time to Mix!</h3>
 
-        <div class="search-results">
+        <div className="search-results">
 
           <img src="https://www.thecocktaildb.com/images/media/drink/wpxpvu1439905379.jpg" alt="Margarita"/>
-          <Link to="#"><p class="lead">Margarita</p></Link>
+          <Link to="#"><p className="lead">Margarita</p></Link>
 
         </div>
 
