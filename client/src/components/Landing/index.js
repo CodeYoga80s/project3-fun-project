@@ -15,13 +15,13 @@ import React, { Component } from "react";
 import logo from "../../logo.svg";
 import "../../App.css";
 import API from "../../utils/API";
-
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 
 
 class App extends Component {
 
-  state = {
+  /* state = {
     favoritesArray: [],
     cocktailID:""
   };
@@ -34,7 +34,7 @@ class App extends Component {
     .then(res => console.log(res))
     .catch(err => console.log(err));
   
-  };
+  }; */
 
 
 
@@ -42,15 +42,36 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
+
+        <div>
+          <Link to="/">Home</Link>
+          <Link to="/signup">Sign-Up</Link>
+          <Link to="#">Favorites</Link>
         </div>
-        <p className="App-intro">
-        <button value={1} className="btn btn-success" onClick={this.addTofavorites}> Add favorite
-          
-          </button> 
-        </p>
+
+        <div className="jumbotron jumbotron-fluid">
+          <div className="container">
+            <h1 className="display-4">IMBIBE</h1>
+            <p className="lead">Drink Recipes for the Homegrown Mixologist.</p>
+          </div>
+        </div>
+
+        
+        <div className="container">
+
+          <h3>Search by...</h3>
+
+          <button>
+            <Link to="/search-results/drinks">Drink Name</Link>
+          </button>
+
+          <button>
+            <Link to="/search-results/ingredient">Ingredient Name</Link>
+          </button>
+
+        </div>
+
+      
       </div>
     );
   }

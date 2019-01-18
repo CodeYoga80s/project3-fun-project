@@ -11,6 +11,7 @@ import SignInPage from '../SignIn';
 
 import * as ROUTES from '../../constants/routes';
 import { withFirebase } from '../Firebase';
+import SearchResults from '../SearchResults';
 
 class App extends Component {
     constructor(props) {
@@ -44,6 +45,7 @@ class App extends Component {
       <Route exact path={ROUTES.LANDING} component={LandingPage} />
       <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
       <Route path={ROUTES.SIGN_IN} component={SignInPage} />
+      <Route exact path="/search-results/:id" component={SearchResults} />
     </div>
   </Router>
     );
