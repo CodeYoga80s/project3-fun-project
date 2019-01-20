@@ -6,6 +6,10 @@ export default {
     return axios.post("/api/favorites", buttonData);
   },
 
+  addUser: function(user){
+    return axios.post("/api/users", user);
+  },
+
   // Get the drink(s) with the given drink name
   getDrinksByDrink: function(drinkName) {
     return axios.get("https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" + drinkName);

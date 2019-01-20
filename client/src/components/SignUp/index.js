@@ -6,6 +6,7 @@ import * as ROUTES from '../../constants/routes';
 import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import Modal from 'react-awesome-modal';
 import "./SignUp.css";
+import API from "../../utils/API";
 
 const SignUpPage = () => (
   <div>
@@ -41,7 +42,7 @@ class SignUpFormBase extends Component {
 
   onSubmit = event => {
     const { username, email, passwordOne } = this.state;
-
+    this.addNewUser();
     this.props.firebase
       .doCreateUserWithEmailAndPassword(email, passwordOne)
       .then(authUser => {
@@ -57,6 +58,14 @@ class SignUpFormBase extends Component {
 
   onChange = event => {
     this.setState({ [event.target.name]: event.target.value });
+  };
+
+  addNewUser = event => {
+    
+    API.addUser({userID: this.state.email})
+    .then(res => console.log(res))
+    .catch(err => console.log(err));
+
   };
 
   render() {
