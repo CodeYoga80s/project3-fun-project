@@ -1,21 +1,12 @@
-// import React from 'react';
-// import { BrowserRouter as Router } from 'react-router-dom';
-
-// import Navigation from '../Navigation';
-
-// const App = () => (
-//   <Router>
-//     <Navigation />
-//   </Router>
-// );
-
-// export default App;
 
 import React, { Component } from "react";
 import logo from "../../logo.svg";
 import "../../App.css";
 import API from "../../utils/API";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import firebase from 'firebase';
+
+import SignUp from '../SignUp';
 
 
 
@@ -36,7 +27,32 @@ class App extends Component {
   
   }; */
 
+  componentDidMount() {
+    this.setAuthObserver();
+    var user = firebase.auth().currentUser;
+    if (user) {
+        // User is signed in.
+        API.getUser(user.email)
+        .then(res => console.log(res.data[0]._id))
+        .catch(err => console.log(err));
+        console.log(user.email);
+      } else {
+        // No user is signed in.
+        console.log("user is null value");
+      }
 
+
+  }
+
+  setAuthObserver () {
+    return firebase.auth().onAuthStateChanged(user => this.setState({ user }));
+    
+}
+
+
+componentWillUnmount() {
+    
+  }
 
 
   render() {
