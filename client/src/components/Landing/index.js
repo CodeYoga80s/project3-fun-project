@@ -32,7 +32,9 @@ class App extends Component {
     var user = firebase.auth().currentUser;
     if (user) {
         // User is signed in.
-        //this.state.userID = user.email;
+        API.getUser(user.email)
+        .then(res => console.log(res.data[0]._id))
+        .catch(err => console.log(err));
         console.log(user.email);
       } else {
         // No user is signed in.
@@ -46,6 +48,7 @@ class App extends Component {
     return firebase.auth().onAuthStateChanged(user => this.setState({ user }));
     
 }
+
 
 componentWillUnmount() {
     
