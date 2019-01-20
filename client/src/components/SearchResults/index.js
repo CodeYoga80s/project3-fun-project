@@ -3,37 +3,59 @@ import logo from "../../logo.svg";
 import "../../App.css";
 import API from "../../utils/API";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import Row from "../Row";
+import Col from "../Col";
+import Card from "../Card";
 
-
-
+{/*image: "",*/}
+{/*, title: res.data.drinks.strDrink, image: res.data.drinks.strDrinkThumb, idDrink: res.data.drinks.idDrink*/}
+{/*{title: res.data.drinks[0].strDrink, image: res.data.drinks[0].strDrinkThumb}*/}
 
 class SearchResults extends Component {
 
   state = {
     favoritesArray: [],
     cocktailID:"",
+    drinks: [],
     title: "",
-    image: "",
+    idDrink: "",
     searchInput: ""
   };
 
- /*  componentDidMount() {
+  componentDidMount() {
     this.displayRandomDrink();
   };
 
   displayRandomDrink = () => {
-    API.getDrinksByDrink("margarita")
+    API.getRandomDrink()
       .then(res =>
-        this.setState({title: res.data.drinks[0].strDrink})
+        this.setState({drinks: res.data.drinks})
       )
       .catch(err => console.log(err));
-  }; */
+  };
 
-  displayDrinksByDrink = event => {
+  chooseSearch = () => {
+    if (this.props.match.params.id === "drinks") {
+      this.displayDrinksByDrink();
+    }
+    else {
+      this.displayDrinksByIngredient();
+    }
+  };
+
+  displayDrinksByDrink = () => {
     console.log(this.state.searchInput + "search is here");
-    API.getDrinksByDrink(this.state.searchInput)
+      API.getDrinksByDrink(this.state.searchInput)
       .then(res =>
-        this.setState({title: res.data.drinks[0].strDrink, image: res.data.drinks[0].strDrinkThumb})
+        this.setState({drinks: res.data.drinks})
+      )
+      .catch(err => console.log(err));
+  };
+
+  displayDrinksByIngredient = () => {
+    API.getDrinksByIngredient(this.state.searchInput)
+      .then(res =>
+        this.setState({drinks: res.data.drinks})
       )
       .catch(err => console.log(err));
   };
@@ -71,9 +93,7 @@ class SearchResults extends Component {
 
 
   render() {
-
-  
-
+    console.log(this.state.drinks);
     return (
       <div className="App">
 
@@ -100,7 +120,7 @@ class SearchResults extends Component {
             <input type="text" name="searchInput" placeholder="Enter here..." id="ingredient-search" value={this.state.searchInput} onChange={this.handleChange}/>
           </form>
 
-          <button type="submit" onClick={this.displayDrinksByDrink}>Search</button>
+          <button type="submit" onClick={this.chooseSearch}>Search</button>
 
         </div>
 
@@ -108,15 +128,29 @@ class SearchResults extends Component {
 
         <div className="search-results">
 
+          <Row>
+            <Col size="md-12">
+              {this.state.drinks.map(drink => (
+                <Card
+                  setDrink={this.setDrink}
+                  key={drink.idDrink}
+                  title={drink.strDrink}
+                  image={drink.strDrinkThumb}
+                  id={drink.idDrink}
+                />
+              ))}
+            </Col>
+          </Row>
+          
+          {/*
           <img src={this.state.image} alt={this.state.title}/>
           <p className="lead">{this.state.title}</p>
 
           <img src="https://www.thecocktaildb.com/images/media/drink/wpxpvu1439905379.jpg" alt="Margarita"/>
-          <Link to="#"><p className="lead">Margarita</p></Link>
+          <Link to="#"><p className="lead">Margarita</p></Link> */}
 
         </div>
 
-      
       </div>
     );
   }
