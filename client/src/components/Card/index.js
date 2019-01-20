@@ -8,7 +8,7 @@ function Card(props) {
       className="card"
       id={props.id}
       title={props.title}
-     /*  onClick={() => props.handleClick(props.id)} */
+      onClick={() => props.handleClick(props.id)}
       style={{
         backgroundImage: props.image ? `url(${props.image})` : "none"
       }}

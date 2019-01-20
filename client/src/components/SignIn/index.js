@@ -51,7 +51,7 @@ class SignInFormBase extends Component {
         this.props.history.push(ROUTES.LANDING);
       })
       .catch(error => {
-        this.setState({ error });
+        this.setState({ error : "Invalid Username and/or Password" });
       });
 
     event.preventDefault();
@@ -69,6 +69,7 @@ class SignInFormBase extends Component {
     return (
   <div>
       <Modal visible={this.state.visible} width="400" height="400" effect="fadeInUp" onClickAway={() => this.hideModal()}>
+      <div className="ErrorMessage">{error}</div>
       <div className="Login">
       <form onSubmit={this.onSubmit}>
           <FormGroup controlId="email" bsSize="large">

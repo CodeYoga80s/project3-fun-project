@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Row from "../Row";
 import Col from "../Col";
 import Card from "../Card";
+import firebase from 'firebase';
 
 {/*image: "",*/}
 {/*, title: res.data.drinks.strDrink, image: res.data.drinks.strDrinkThumb, idDrink: res.data.drinks.idDrink*/}
@@ -15,7 +16,7 @@ class SearchResults extends Component {
 
   state = {
     favoritesArray: [],
-    cocktailID:"",
+    userID:"",
     drinks: [],
     title: "",
     idDrink: "",
@@ -24,6 +25,19 @@ class SearchResults extends Component {
 
   componentDidMount() {
     this.displayRandomDrink();
+
+    this.setAuthObserver();
+    var user = firebase.auth().currentUser;
+    if (user) {
+        // User is signed in.
+        API.getUser(user.email)
+        .then(res => this.setState({userID : res.data[0]._id}))
+        .catch(err => console.log(err));
+        console.log(user.email);
+      } else {
+        // No user is signed in.
+        console.log("user is null value");
+      }
   };
 
   displayRandomDrink = () => {
@@ -72,6 +86,19 @@ class SearchResults extends Component {
     event.preventDefault();
   };
 
+  setAuthObserver () {
+    return firebase.auth().onAuthStateChanged(user => this.setState({ user }));
+    
+  }
+
+  addTofavorites = event => {
+    // event.preventDefault();
+    console.log(event);
+    API.saveFavorite({cocktailID: event})
+    .then(res => console.log(res))
+    .catch(err => console.log(err));
+  
+  };
 /* 
   handleChange({target}) {
     this.setState({
@@ -137,6 +164,7 @@ class SearchResults extends Component {
                   title={drink.strDrink}
                   image={drink.strDrinkThumb}
                   id={drink.idDrink}
+                  handleClick={this.addTofavorites}
                 />
               ))}
             </Col>
