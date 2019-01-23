@@ -24,7 +24,8 @@ class SearchResults extends Component {
     title: "",
     idDrink: "",
     searchInput: "",
-    isModalOpen: false
+    isModalOpen: false,
+    noRecipes: false
   };
 
   componentDidMount() {
@@ -115,7 +116,6 @@ class SearchResults extends Component {
   
   };
 
-
   openModal = () => {
     this.setState({ isModalOpen: true });
   };
@@ -136,7 +136,8 @@ class SearchResults extends Component {
 
 
   render() {
-    console.log(this.state.drinks);
+    /* console.log("this.state.drinks = " + this.state.drinks);
+    console.log("this.state.drinks.length = " + this.state.drinks.length); */
     return (
       <div className="App">
 
@@ -169,25 +170,36 @@ class SearchResults extends Component {
 
         </div>
 
-        <h3>Time to Mix!</h3>
+        {this.state.noRecipes ? (
+          <h3>Sorry there are no recipes matching that, so try this <br/> fun random recipe instead!</h3>
+        ) : (
+          <h3>Time to Mix!</h3>
+        )}
 
         <div className="search-results">
 
-          <Row>
-            <Col size="md-12">
-              {this.state.drinks.map(drink => (
-                <Card
-                  setDrink={this.setDrink}
-                  key={drink.idDrink}
-                  title={drink.strDrink}
-                  image={drink.strDrinkThumb}
-                  id={drink.idDrink}
-                  handleClick={this.addTofavorites}
-                />
-              ))}
-            </Col>
-          </Row>     
-
+          {this.state.drinks == null ? (
+            <div>
+              {this.state.noRecipes = true}
+              {this.displayRandomDrink()}
+            </div>
+          ) : (
+            <Row>
+              <Col size="md-12">
+                {this.state.noRecipes = false}
+                {this.state.drinks.map(drink => (
+                  <Card
+                    setDrink={this.setDrink}
+                    key={drink.idDrink}
+                    title={drink.strDrink}
+                    image={drink.strDrinkThumb}
+                    id={drink.idDrink}
+                    handleClick={this.addTofavorites}
+                  />
+                ))}
+              </Col>
+            </Row>     
+          )}
         </div>
 
       </div>
