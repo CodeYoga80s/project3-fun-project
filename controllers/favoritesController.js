@@ -5,7 +5,7 @@ module.exports = {
   findAll: function(req, res) {
     db.User
       .find(req.query)
-      .populate("favorites")
+      // .populate("favorites")
       .sort({ date: -1 })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
@@ -36,7 +36,7 @@ module.exports = {
   },
   updateFav: function(req, res) {
     db.User
-      .findOneAndUpdate({_id: req.params.id},{$push: { favorites: req.body.cocktailID }}, { new: true })
+      .findOneAndUpdate({_id: req.params.id},{$addToSet : { favorites: req.body.cocktailID }}, { new: true })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },

@@ -104,10 +104,8 @@ class SearchResults extends Component {
     this.checkUser();
     if(this.state.userID){
     console.log(event);
-    API.saveFavorite({cocktailID: event})
-    .then(res => 
-    API.updateUser(this.state.userID,{cocktailID: res.data._id})
-    .then(res => console.log(res)))
+    API.updateUser(this.state.userID,{cocktailID: event})
+    .then(res => console.log(res))
     .catch(err => console.log(err)); }
     else{
       this.openModal();
@@ -115,6 +113,23 @@ class SearchResults extends Component {
     }
   
   };
+
+  // addTofavorites = event => {
+  //   // event.preventDefault();
+  //   this.checkUser();
+  //   if(this.state.userID){
+  //   console.log(event);
+  //   API.saveFavorite({cocktailID: event})
+  //   .then(res => 
+  //   API.updateUser(this.state.userID,{cocktailID: res.data._id})
+  //   .then(res => console.log(res)))
+  //   .catch(err => console.log(err)); }
+  //   else{
+  //     this.openModal();
+
+  //   }
+  
+  // };
 
   openModal = () => {
     this.setState({ isModalOpen: true });
