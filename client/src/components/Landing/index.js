@@ -62,7 +62,7 @@ componentWillUnmount() {
         <div>
           <Link to="/">Home</Link>
           <Link to="/signup">Sign-Up</Link>
-          <Link to="#">Favorites</Link>
+          <Link to="/favorites">Favorites</Link>
         </div>
 
         <div className="jumbotron jumbotron-fluid">

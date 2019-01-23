@@ -9,13 +9,13 @@ import Card from "../Card";
 import firebase from 'firebase';
 import SignIn from "../SignIn";
 import Modal from 'react-awesome-modal';
-import Favorite from "../Favorite"
 
 {/*image: "",*/}
 {/*, title: res.data.drinks.strDrink, image: res.data.drinks.strDrinkThumb, idDrink: res.data.drinks.idDrink*/}
 {/*{title: res.data.drinks[0].strDrink, image: res.data.drinks[0].strDrinkThumb}*/}
+// this.setState({userID : res.data[0]._id,favoritesArray : res})
 
-class SearchResults extends Component {
+class Favorite extends Component {
 
   state = {
     favoritesArray: [],
@@ -28,8 +28,8 @@ class SearchResults extends Component {
   };
 
   componentDidMount() {
-    console.log(this.state.isModalOpen);
-    this.displayRandomDrink();
+    // console.log(this.state.isModalOpen);
+    // this.displayRandomDrink();
     this.checkUser();
      
   };
@@ -40,48 +40,49 @@ class SearchResults extends Component {
     if (user) {
         // User is signed in.
         API.getUser(user.email)
-        .then(res => this.setState({userID : res.data[0]._id}))
+        .then(res => this.setState({userID : res.data[0]._id,favoritesArray : res.data[0].favorites}))
         .catch(err => console.log(err));
-        console.log(user.email);
+
       } else {
         // No user is signed in.
         console.log("user is null value");
+        this.openModal();
       }
   };
 
-  displayRandomDrink = () => {
-    API.getRandomDrink()
-      .then(res =>
-        this.setState({drinks: res.data.drinks})
-      )
-      .catch(err => console.log(err));
-  };
+//   displayRandomDrink = () => {
+//     API.getRandomDrink()
+//       .then(res =>
+//         this.setState({drinks: res.data.drinks})
+//       )
+//       .catch(err => console.log(err));
+//   };
 
-  chooseSearch = () => {
-    if (this.props.match.params.id === "drinks") {
-      this.displayDrinksByDrink();
-    }
-    else {
-      this.displayDrinksByIngredient();
-    }
-  };
+//   chooseSearch = () => {
+//     if (this.props.match.params.id === "drinks") {
+//       this.displayDrinksByDrink();
+//     }
+//     else {
+//       this.displayDrinksByIngredient();
+//     }
+//   };
 
-  displayDrinksByDrink = () => {
-    console.log(this.state.searchInput + "search is here");
-      API.getDrinksByDrink(this.state.searchInput)
-      .then(res =>
-        this.setState({drinks: res.data.drinks})
-      )
-      .catch(err => console.log(err));
-  };
+//   displayDrinksByDrink = () => {
+//     console.log(this.state.searchInput + "search is here");
+//       API.getDrinksByDrink(this.state.searchInput)
+//       .then(res =>
+//         this.setState({drinks: res.data.drinks})
+//       )
+//       .catch(err => console.log(err));
+//   };
 
-  displayDrinksByIngredient = () => {
-    API.getDrinksByIngredient(this.state.searchInput)
-      .then(res =>
-        this.setState({drinks: res.data.drinks})
-      )
-      .catch(err => console.log(err));
-  };
+//   displayDrinksByIngredient = () => {
+//     API.getDrinksByIngredient(this.state.searchInput)
+//       .then(res =>
+//         this.setState({drinks: res.data.drinks})
+//       )
+//       .catch(err => console.log(err));
+//   };
 
   handleChange = event => {
     const {name, value} = event.target;
@@ -100,20 +101,20 @@ class SearchResults extends Component {
     
   }
 
-  addTofavorites = event => {
-    // event.preventDefault();
-    this.checkUser();
-    if(this.state.userID){
-    console.log(event);
-    API.updateUser(this.state.userID,{cocktailID: event})
-    .then(res => console.log(res))
-    .catch(err => console.log(err)); }
-    else{
-      this.openModal();
+//   addTofavorites = event => {
+//     // event.preventDefault();
+//     this.checkUser();
+//     if(this.state.userID){
+//     console.log(event);
+//     API.updateUser(this.state.userID,{cocktailID: event})
+//     .then(res => console.log(res))
+//     .catch(err => console.log(err)); }
+//     else{
+//       this.openModal();
 
-    }
+//     }
   
-  };
+//   };
 
 
   openModal = () => {
@@ -136,7 +137,9 @@ class SearchResults extends Component {
 
 
   render() {
-    console.log(this.state.drinks);
+    // console.log(this.state.drinks);
+            console.log(this.state.userID);
+        console.log("favorites array" + this.state.favoritesArray);
     return (
       <div className="App">
 
@@ -159,19 +162,21 @@ class SearchResults extends Component {
 
        <Modal visible={this.state.isModalOpen} width="400" height="400" effect="fadeInUp" onClickAway={() => this.closeModal()}><SignIn ></SignIn> </Modal> 
 
-          <h3>What can I get for you?</h3>
+          <h3>Favorites</h3>
 
-          <form>
+          {/* <form>
             <input type="text" name="searchInput" placeholder="Enter here..." id="ingredient-search" value={this.state.searchInput} onChange={this.handleChange}/>
           </form>
 
           <button type="submit" onClick={this.chooseSearch}>Search</button>
 
+       
+
+        <h3>Time to Mix!</h3> */}
+
         </div>
 
-        <h3>Time to Mix!</h3>
-
-        <div className="search-results">
+        <div className="favorites">
 
           <Row>
             <Col size="md-12">
@@ -195,4 +200,4 @@ class SearchResults extends Component {
   }
 }
 
-export default SearchResults;
+export default Favorite;
