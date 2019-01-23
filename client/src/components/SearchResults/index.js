@@ -25,11 +25,14 @@ class SearchResults extends Component {
     idDrink: "",
     searchInput: "",
     isModalOpen: false,
-    noRecipes: false
+    noRecipes: false,
+    details: [],
+    isDetailModalOpen: false
   };
 
   componentDidMount() {
     console.log(this.state.isModalOpen);
+    console.log("this.isDetailModalOpen = " + this.isDetailModalOpen);
     this.displayRandomDrink();
     this.checkUser();
      
@@ -96,6 +99,15 @@ class SearchResults extends Component {
     event.preventDefault();
   };
 
+  displayDrinkById = event => {
+    this.openDetailModal();
+    API.getDrinkById(event)
+    .then(res =>
+        this.setState({details: res.data.drinks})
+      )
+      .catch(err => console.log(err));
+  };
+
   setAuthObserver () {
     return firebase.auth().onAuthStateChanged(user => this.setState({ user }));
     
@@ -123,6 +135,15 @@ class SearchResults extends Component {
   closeModal = () => {
     this.setState({ isModalOpen: false });
   };
+
+  openDetailModal = () => {
+    this.setState({ isDetailModalOpen: true });
+  };
+
+  closeDetailModal = () => {
+    this.setState({ isDetailModalOpen: false });
+  };
+
 /* 
   handleChange({target}) {
     this.setState({
@@ -138,6 +159,7 @@ class SearchResults extends Component {
   render() {
     /* console.log("this.state.drinks = " + this.state.drinks);
     console.log("this.state.drinks.length = " + this.state.drinks.length); */
+    console.log("this.state.details = " + this.state.details);
     return (
       <div className="App">
 
@@ -159,6 +181,42 @@ class SearchResults extends Component {
         <div className="container">
 
        <Modal visible={this.state.isModalOpen} width="400" height="400" effect="fadeInUp" onClickAway={() => this.closeModal()}><SignIn ></SignIn> </Modal> 
+
+       <Modal visible={this.state.isDetailModalOpen} width="800" height="800" effect="fadeInUp" onClickAway={() => this.closeDetailModal()}> 
+        <div>
+          {this.state.details.map(detail => (
+            <div>
+              <img src={detail.strDrinkThumb} alt={detail.strDrink}/>
+              <h1>{detail.strDrink}</h1>
+              <p><b>Alcoholic/Non-Alcoholic: </b>{detail.strAlcoholic}</p>
+              <br/>
+              <p><b>Glass: </b>{detail.strGlass}</p>
+              <br/>
+              <p><b>Instructions: </b>{detail.strInstructions}</p>
+              <br/>
+              <p><b>Ingredients: </b></p>
+              <br/>
+              <ul>
+                <li>{detail.strMeasure1}{detail.strIngredient1}</li>
+                <li>{detail.strMeasure2}{detail.strIngredient2}</li>
+                <li>{detail.strMeasure3}{detail.strIngredient3}</li>
+                <li>{detail.strMeasure4}{detail.strIngredient4}</li>
+                <li>{detail.strMeasure5}{detail.strIngredient5}</li>
+                <li>{detail.strMeasure6}{detail.strIngredient6}</li>
+                <li>{detail.strMeasure7}{detail.strIngredient7}</li>
+                <li>{detail.strMeasure8}{detail.strIngredient8}</li>
+                <li>{detail.strMeasure9}{detail.strIngredient9}</li>
+                <li>{detail.strMeasure10}{detail.strIngredient10}</li>
+                <li>{detail.strMeasure11}{detail.strIngredient11}</li>
+                <li>{detail.strMeasure12}{detail.strIngredient12}</li>
+                <li>{detail.strMeasure13}{detail.strIngredient13}</li>
+                <li>{detail.strMeasure14}{detail.strIngredient14}</li>
+                <li>{detail.strMeasure15}{detail.strIngredient15}</li>
+              </ul>
+            </div>
+          ))}
+        </div>
+       </Modal>
 
           <h3>What can I get for you?</h3>
 
@@ -194,7 +252,7 @@ class SearchResults extends Component {
                     title={drink.strDrink}
                     image={drink.strDrinkThumb}
                     id={drink.idDrink}
-                    handleClick={this.addTofavorites}
+                    handleClick={this.displayDrinkById}
                   />
                 ))}
               </Col>
