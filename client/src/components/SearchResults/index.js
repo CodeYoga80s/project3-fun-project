@@ -7,6 +7,8 @@ import Row from "../Row";
 import Col from "../Col";
 import Card from "../Card";
 import firebase from 'firebase';
+import SignIn from "../SignIn";
+import Modal from 'react-awesome-modal';
 
 {/*image: "",*/}
 {/*, title: res.data.drinks.strDrink, image: res.data.drinks.strDrinkThumb, idDrink: res.data.drinks.idDrink*/}
@@ -20,12 +22,18 @@ class SearchResults extends Component {
     drinks: [],
     title: "",
     idDrink: "",
-    searchInput: ""
+    searchInput: "",
+    isModalOpen: false
   };
 
   componentDidMount() {
+    console.log(this.state.isModalOpen);
     this.displayRandomDrink();
+    this.checkUser();
+     
+  };
 
+  checkUser = () => {
     this.setAuthObserver();
     var user = firebase.auth().currentUser;
     if (user) {
@@ -93,11 +101,27 @@ class SearchResults extends Component {
 
   addTofavorites = event => {
     // event.preventDefault();
+    this.checkUser();
+    if(this.state.userID){
     console.log(event);
     API.saveFavorite({cocktailID: event})
-    .then(res => console.log(res))
-    .catch(err => console.log(err));
+    .then(res => 
+    API.updateUser(this.state.userID,{cocktailID: res.data._id})
+    .then(res => console.log(res)))
+    .catch(err => console.log(err)); }
+    else{
+      this.openModal();
+
+    }
   
+  };
+
+  openModal = () => {
+    this.setState({ isModalOpen: true });
+  };
+
+  closeModal = () => {
+    this.setState({ isModalOpen: false });
   };
 /* 
   handleChange({target}) {
@@ -140,6 +164,8 @@ class SearchResults extends Component {
         {/* {this.props.match.params.id} */}
         
         <div className="container">
+
+       <Modal visible={this.state.isModalOpen} width="400" height="400" effect="fadeInUp" onClickAway={() => this.closeModal()}><SignIn ></SignIn> </Modal> 
 
           <h3>What can I get for you?</h3>
 

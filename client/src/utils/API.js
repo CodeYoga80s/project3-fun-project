@@ -13,8 +13,8 @@ export default {
   getUser: function(user){
     return axios.get("/api/users", user);
   },
-  updateUser: function(user){
-    return axios.post("/api/users", user);
+  updateUser: function(id,favorite){
+    return axios.post("/api/users/" + id, favorite);
   },
 
   // Get the drink(s) with the given drink name

@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
 import Jumbotron from "../Jumbotron";
-import { SignUpLink } from '../SignUp';
+import { SignUpLink,SignUpForm } from '../SignUp';
 import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
 import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import Modal from 'react-awesome-modal';
 import "./Login.css";
+
 
 const SignInPage = () => (
   <div>

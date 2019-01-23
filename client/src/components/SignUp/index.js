@@ -126,7 +126,7 @@ class SignUpFormBase extends Component {
 
 const SignUpLink = () => (
   <p>
-    Don't have an account? <Link to={ROUTES.SIGN_UP}>Sign Up</Link>
+    Don't have an account? <Link to="/signup">Sign Up</Link>
   </p>
 );
 const SignUpForm = withRouter(withFirebase(SignUpFormBase));

@@ -36,7 +36,7 @@ module.exports = {
   },
   updateFav: function(req, res) {
     db.User
-      .findOneAndUpdate({_id: req.params.id},req.body)
+      .findOneAndUpdate({_id: req.params.id},{$push: { favorites: req.body.cocktailID }}, { new: true })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
