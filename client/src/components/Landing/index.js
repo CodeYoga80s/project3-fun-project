@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import firebase from 'firebase';
 
 import SignUp from '../SignUp';
+import "./style.css";
 
 
 
@@ -59,12 +60,6 @@ componentWillUnmount() {
     return (
       <div className="App">
 
-        <div>
-          <Link to="/">Home</Link>
-          <Link to="/signup">Sign-Up</Link>
-          <Link to="/favorites">Favorites</Link>
-        </div>
-
         <div className="jumbotron jumbotron-fluid">
           <div className="container">
             <h1 className="display-4">IMBIBE</h1>
@@ -76,15 +71,17 @@ componentWillUnmount() {
         <div className="container">
 
           <h3>Search by...</h3>
+            <div>
+              <button>
+                <Link to="/search-results/drinks">Drink Name</Link>
+              </button>
+            </div>
+              <div>
 
-          <button>
-            <Link to="/search-results/drinks">Drink Name</Link>
-          </button>
-
-          <button>
-            <Link to="/search-results/ingredient">Ingredient Name</Link>
-          </button>
-
+              <button>
+                <Link to="/search-results/ingredient">Ingredient Name</Link>
+              </button>
+              </div>
         </div>
 
       
