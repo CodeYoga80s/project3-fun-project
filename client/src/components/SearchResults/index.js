@@ -10,7 +10,7 @@ import firebase from 'firebase';
 import SignIn from "../SignIn";
 import Modal from 'react-awesome-modal';
 import Favorite from "../Favorite"
-import "./search.css"
+import './style.css'
 
 {/*image: "",*/}
 {/*, title: res.data.drinks.strDrink, image: res.data.drinks.strDrinkThumb, idDrink: res.data.drinks.idDrink*/}
@@ -164,12 +164,6 @@ class SearchResults extends Component {
     return (
       <div className="App">
 
-        <div>
-          <Link to="/">Home</Link>
-          <Link to="#">Sign-Up</Link>
-          <Link to="/favorites">Favorites</Link>
-        </div>
-
         <div className="jumbotron jumbotron-fluid">
           <div className="container">
             <h1 className="display-4">Recipe Results</h1>
@@ -183,11 +177,11 @@ class SearchResults extends Component {
 
        <Modal visible={this.state.isModalOpen} width="400" height="400" effect="fadeInUp" onClickAway={() => this.closeModal()}><SignIn ></SignIn> </Modal> 
 
-       <Modal visible={this.state.isDetailModalOpen} width="800" height="800" effect="fadeInUp"  onClickAway={() => this.closeDetailModal()}> 
-        <div>
+       <Modal class="detail-modal" visible={this.state.isDetailModalOpen} width="400" height="0" effect="fadeInUp" onClickAway={() => this.closeDetailModal()}> 
+        <div  class="modal-content">
           {this.state.details.map(detail => (
-            <div >
-              <img src={detail.strDrinkThumb} alt={detail.strDrink} width="200" height="200" />
+            <div>
+              <img class="recipe-thumb" src={detail.strDrinkThumb} alt={detail.strDrink}/>
               <h1>{detail.strDrink}</h1>
               <p><b>Alcoholic/Non-Alcoholic: </b>{detail.strAlcoholic}</p>
               <p><b>Glass: </b>{detail.strGlass}</p>
