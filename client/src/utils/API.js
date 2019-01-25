@@ -1,9 +1,20 @@
 import axios from "axios";
 
 export default {
- 
-  saveFavorite: function(buttonData) {
-    return axios.post("/api/favorites", buttonData);
+//add to favorites 
+  saveFavorite: function(id) {
+    return axios.post("/api/favorites", id);
+  },
+//add user
+  addUser: function(user){
+    return axios.post("/api/users", user);
+  },
+//Get user
+  getUser: function(user){
+    return axios.get("/api/users", user);
+  },
+  updateUser: function(id,favorite){
+    return axios.post("/api/users/" + id, favorite);
   },
 
   // Get the drink(s) with the given drink name
