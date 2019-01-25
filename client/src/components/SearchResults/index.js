@@ -257,6 +257,7 @@ class SearchResults extends Component {
       </div>
     );
   }
+  
 }
 
 export default SearchResults;
