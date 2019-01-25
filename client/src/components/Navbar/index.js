@@ -1,9 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./style.css";
+import SignOutButton from '../SignOut';
+import SignInPage from '../SignIn';
+
+
 
 // Depending on the current path, this component sets the "active" class on the appropriate navigation link item
-function Navbar() {
+function Navbar({ authUser }){
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <Link className="navbar-brand" to="/">
@@ -15,12 +19,19 @@ function Navbar() {
  
           </li>
           <li className="nav-item">
-            <Link
+            {/* <Link
               to="/signup"
               className={window.location.pathname === "/signup" ? "nav-link active" : "nav-link"}
             >
               Sign Up
-            </Link>
+            </Link> */}
+            <div>{authUser ? <SignOutButton /> : <Link
+              to="/signin"
+              className={window.location.pathname === "/" ? "nav-link active" : "nav-link"}
+            >
+              Sign In
+            </Link>}</div>
+
           </li>
           <li className="nav-item">
             <Link

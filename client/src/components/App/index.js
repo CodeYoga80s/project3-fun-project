@@ -40,14 +40,14 @@ class App extends Component {
         return (
   <Router>
     <div>
-    <Navigation authUser={this.state.authUser} />
+    {/* <Navigation authUser={this.state.authUser} /> */}
 
-      <Navbar />
-      <Route exact path={ROUTES.LANDING} component={LandingPage} />
+      <Navbar authUser={this.state.authUser}/>
+      <Route authUser={this.state.authUser} exact path={ROUTES.LANDING} component={LandingPage} />
       <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
       <Route path={ROUTES.SIGN_IN} component={SignInPage} />
-      <Route exact path="/search-results/:id" component={SearchResults} />
-      <Route exact path="/favorites" component={Favorite} />
+      <Route authUser={this.state.authUser} exact path="/search-results/:id" component={SearchResults} />
+      <Route authUser={this.state.authUser} exact path="/favorites" component={Favorite} />
     </div>
   </Router>
     );

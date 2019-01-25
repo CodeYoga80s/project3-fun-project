@@ -119,7 +119,7 @@ class SearchResults extends Component {
     this.checkUser();
     if(this.state.userID){
     console.log(event);
-    API.updateUser(this.state.userID,{cocktailID: event})
+    API.updateUser(this.state.userID,{cocktailID: event.target.value})
     .then(res => console.log(res))
     .catch(err => console.log(err)); }
     else{
@@ -184,13 +184,9 @@ class SearchResults extends Component {
               <img class="recipe-thumb" src={detail.strDrinkThumb} alt={detail.strDrink}/>
               <h1>{detail.strDrink}</h1>
               <p><b>Alcoholic/Non-Alcoholic: </b>{detail.strAlcoholic}</p>
-              <br/>
               <p><b>Glass: </b>{detail.strGlass}</p>
-              <br/>
               <p><b>Instructions: </b>{detail.strInstructions}</p>
-              <br/>
               <p><b>Ingredients: </b></p>
-              <br/>
               <ul>
                 <li>{detail.strMeasure1}{detail.strIngredient1}</li>
                 <li>{detail.strMeasure2}{detail.strIngredient2}</li>
@@ -208,6 +204,7 @@ class SearchResults extends Component {
                 <li>{detail.strMeasure14}{detail.strIngredient14}</li>
                 <li>{detail.strMeasure15}{detail.strIngredient15}</li>
               </ul>
+              <button type="submit" value = {detail.idDrink} onClick={this.addTofavorites}>Add To Favorites</button>
             </div>
           ))}
         </div>
