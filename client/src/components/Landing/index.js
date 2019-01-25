@@ -1,6 +1,6 @@
 
 import React, { Component } from "react";
-import logo from "../../logo.svg";
+import logo from "../Landing/imbibe_logo.png";
 import "../../App.css";
 import API from "../../utils/API";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
@@ -62,6 +62,7 @@ componentWillUnmount() {
 
         <div className="jumbotron jumbotron-fluid">
           <div className="container">
+          <img src={logo} className="App-logo" alt="logo"/>
             <h1 className="display-4">IMBIBE</h1>
             <p className="lead">Drink Recipes for the Homegrown Mixologist.</p>
           </div>
