@@ -11,6 +11,7 @@ import "./style.css";
 
 
 
+
 class App extends Component {
 
 
@@ -42,14 +43,19 @@ componentWillUnmount() {
   }
 
 
+  
   render() {
     return (
       <div className="App">
 
         <div className="jumbotron jumbotron-fluid">
           <div className="container">
-          <img src={logo} className="App-logo" alt="logo"/>
-            <h1 className="display-4">IMBIBE</h1>
+          <img src={logo} style={{ height: "150px", width: "150px", textAlign: "center" }}
+          className="App-logo" alt="logo"/>
+
+            <h1  
+            style={{ fontsize: 55, clear: "both", textAlign: "center" }}
+    className="display-4">IMBIBE</h1>
             <p className="lead">Drink Recipes for the Homegrown Mixologist.</p>
           </div>
         </div>
