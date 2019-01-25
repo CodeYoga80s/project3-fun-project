@@ -143,12 +143,6 @@ class Favorite extends Component {
     return (
       <div className="App">
 
-        <div>
-          <Link to="/">Home</Link>
-          <Link to="#">Sign-Up</Link>
-          <Link to="/favorites">Favorites</Link>
-        </div>
-
         <div className="jumbotron jumbotron-fluid">
           <div className="container">
             <h1 className="display-4">Recipe Results</h1>

@@ -13,20 +13,6 @@ import "./style.css";
 
 class App extends Component {
 
-  /* state = {
-    favoritesArray: [],
-    cocktailID:""
-  };
-
-
-  addTofavorites = event => {
-    event.preventDefault();
-    console.log(event.target.value);
-    API.saveFavorite({cocktailID: event.target.value})
-    .then(res => console.log(res))
-    .catch(err => console.log(err));
-  
-  }; */
 
   componentDidMount() {
     this.setAuthObserver();
