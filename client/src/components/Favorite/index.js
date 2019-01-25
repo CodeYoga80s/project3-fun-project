@@ -18,7 +18,7 @@ import Modal from 'react-awesome-modal';
 class Favorite extends Component {
 
   state = {
-    favoritesArray: [],
+    favoritesArray:[],
     userID:"",
     drinks: [],
     title: "",
@@ -27,11 +27,12 @@ class Favorite extends Component {
     isModalOpen: false
   };
 
-  componentDidMount() {
+  async componentDidMount() {
     // console.log(this.state.isModalOpen);
     // this.displayRandomDrink();
-    this.checkUser();
-     
+     this.checkUser();
+     //this.displayDrinkById();
+    
   };
 
   checkUser = () => {
@@ -43,11 +44,18 @@ class Favorite extends Component {
         .then(res => this.setState({userID : res.data[0]._id,favoritesArray : res.data[0].favorites}))
         .catch(err => console.log(err));
 
+        this.setState(this.state.favoritesArray.split);
+        
+
       } else {
         // No user is signed in.
         console.log("user is null value");
         this.openModal();
       }
+
+
+    //   this.displayDrinkById();
+      
   };
 
 //   displayRandomDrink = () => {
@@ -57,7 +65,15 @@ class Favorite extends Component {
 //       )
 //       .catch(err => console.log(err));
 //   };
-
+  displayDrinkById = () => {
+   console.log("One of the drink ids " + this.state.favoritesArray[0]);
+    API.getDrinkById(this.state.favoritesArray[0])
+    .then(res =>
+        this.setState({drinks: res.data.drinks})
+      )
+      .catch(err => console.log(err));
+      console.log(this.state.drinks);
+  };
 //   chooseSearch = () => {
 //     if (this.props.match.params.id === "drinks") {
 //       this.displayDrinksByDrink();
@@ -83,6 +99,8 @@ class Favorite extends Component {
 //       )
 //       .catch(err => console.log(err));
 //   };
+
+
 
   handleChange = event => {
     const {name, value} = event.target;
@@ -116,6 +134,11 @@ class Favorite extends Component {
   
 //   };
 
+ getFavorites = () => {
+           for(var i = 0; i< this.state.favoritesArray.length;i++){
+          console.log("liked drink ids" + this.state.favoritesArray[i]);
+      }
+ };
 
   openModal = () => {
     this.setState({ isModalOpen: true });
@@ -139,9 +162,12 @@ class Favorite extends Component {
   render() {
     // console.log(this.state.drinks);
             console.log(this.state.userID);
-        console.log("favorites array" + this.state.favoritesArray);
+            console.log("liked drinks length " + this.state.favoritesArray.length);
+            
     return (
       <div className="App">
+
+  
 
         <div className="jumbotron jumbotron-fluid">
           <div className="container">
@@ -181,7 +207,7 @@ class Favorite extends Component {
                   title={drink.strDrink}
                   image={drink.strDrinkThumb}
                   id={drink.idDrink}
-                  handleClick={this.addTofavorites}
+                  
                 />
               ))}
             </Col>
