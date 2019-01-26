@@ -119,7 +119,7 @@ class SearchResults extends Component {
     this.checkUser();
     if(this.state.userID){
     console.log(event);
-    API.updateUser(this.state.userID,{cocktailID: event.target.value})
+    API.updateUser(this.state.userID,{cocktailID: event})
     .then(res => console.log(res))
     .catch(err => console.log(err)); }
     else{
@@ -177,11 +177,11 @@ class SearchResults extends Component {
 
        <Modal visible={this.state.isModalOpen} width="400" height="400" effect="fadeInUp" onClickAway={() => this.closeModal()}><SignIn ></SignIn> </Modal> 
 
-       <Modal class="detail-modal" visible={this.state.isDetailModalOpen} width="400" height="0" effect="fadeInUp" onClickAway={() => this.closeDetailModal()}> 
-        <div  class="modal-content">
+       <Modal className="detail-modal" visible={this.state.isDetailModalOpen} width="400" height="0" effect="fadeInUp" onClickAway={() => this.closeDetailModal()}> 
+        <div  className="modal-content">
           {this.state.details.map(detail => (
             <div>
-              <img class="recipe-thumb" src={detail.strDrinkThumb} alt={detail.strDrink}/>
+              <img className="recipe-thumb" src={detail.strDrinkThumb} alt={detail.strDrink}/>
               <h1>{detail.strDrink}</h1>
               <p><b>Alcoholic/Non-Alcoholic: </b>{detail.strAlcoholic}</p>
               <p><b>Glass: </b>{detail.strGlass}</p>
@@ -244,9 +244,11 @@ class SearchResults extends Component {
                     title={drink.strDrink}
                     image={drink.strDrinkThumb}
                     id={drink.idDrink}
-                    handleClick={this.displayDrinkById}
+                    displayDrinkById={this.displayDrinkById}
+              
                   />
-                ))}
+                ))
+                }
               </Col>
             </Row>     
           )}

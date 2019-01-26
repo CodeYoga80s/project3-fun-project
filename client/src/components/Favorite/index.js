@@ -18,20 +18,27 @@ import Modal from 'react-awesome-modal';
 class Favorite extends Component {
 
   state = {
-    favoritesArray: [],
+    favoritesArray:[],
     userID:"",
     drinks: [],
     title: "",
     idDrink: "",
     searchInput: "",
-    isModalOpen: false
+    isModalOpen: false,
+    noRecipes: false,
+    details: [],
+    isDetailModalOpen: false
   };
 
-  componentDidMount() {
+
+
+    componentDidMount() {
     // console.log(this.state.isModalOpen);
     // this.displayRandomDrink();
-    this.checkUser();
-     
+     this.checkUser();
+     //this.displayDrinkById();
+      
+    
   };
 
   checkUser = () => {
@@ -40,14 +47,21 @@ class Favorite extends Component {
     if (user) {
         // User is signed in.
         API.getUser(user.email)
-        .then(res => this.setState({userID : res.data[0]._id,favoritesArray : res.data[0].favorites}))
+        .then(res => {this.setState({userID : res.data[0]._id,favoritesArray : res.data[0].favorites}); this.getFavorites();})
         .catch(err => console.log(err));
+
+        this.setState(this.state.favoritesArray.split);
+        
 
       } else {
         // No user is signed in.
         console.log("user is null value");
         this.openModal();
       }
+
+
+    //   this.displayDrinkById();
+      
   };
 
 //   displayRandomDrink = () => {
@@ -58,6 +72,25 @@ class Favorite extends Component {
 //       .catch(err => console.log(err));
 //   };
 
+displayDrinkById = event => {
+    this.openDetailModal();
+    API.getDrinkById(event)
+    .then(res =>
+        this.setState({details: res.data.drinks})
+      )
+      .catch(err => console.log(err));
+  };
+
+
+  displayFavDrinksById = event => {
+      console.log("passed in event" + event);
+    API.getDrinkById(event)
+    .then(res =>
+        this.setState({drinks: this.state.drinks.concat(res.data.drinks)})
+      )
+      .catch(err => console.log(err));
+      console.log(this.state.drinks);
+  };
 //   chooseSearch = () => {
 //     if (this.props.match.params.id === "drinks") {
 //       this.displayDrinksByDrink();
@@ -83,6 +116,8 @@ class Favorite extends Component {
 //       )
 //       .catch(err => console.log(err));
 //   };
+
+
 
   handleChange = event => {
     const {name, value} = event.target;
@@ -116,6 +151,12 @@ class Favorite extends Component {
   
 //   };
 
+ getFavorites = () => {
+           for(var i = 0; i< this.state.favoritesArray.length;i++){
+          console.log("liked drink ids" + this.state.favoritesArray[i]);
+          this.displayFavDrinksById(this.state.favoritesArray[i]);
+      }
+ };
 
   openModal = () => {
     this.setState({ isModalOpen: true });
@@ -124,6 +165,15 @@ class Favorite extends Component {
   closeModal = () => {
     this.setState({ isModalOpen: false });
   };
+
+  openDetailModal = () => {
+    this.setState({ isDetailModalOpen: true });
+  };
+
+  closeDetailModal = () => {
+    this.setState({ isDetailModalOpen: false });
+  };
+
 /* 
   handleChange({target}) {
     this.setState({
@@ -139,9 +189,11 @@ class Favorite extends Component {
   render() {
     // console.log(this.state.drinks);
             console.log(this.state.userID);
-        console.log("favorites array" + this.state.favoritesArray);
+            
     return (
       <div className="App">
+
+  
 
         <div className="jumbotron jumbotron-fluid">
           <div className="container">
@@ -155,6 +207,38 @@ class Favorite extends Component {
         <div className="container">
 
        <Modal visible={this.state.isModalOpen} width="400" height="400" effect="fadeInUp" onClickAway={() => this.closeModal()}><SignIn ></SignIn> </Modal> 
+       <Modal className="detail-modal" visible={this.state.isDetailModalOpen} width="400" height="0" effect="fadeInUp" onClickAway={() => this.closeDetailModal()}> 
+        <div  className="modal-content">
+          {this.state.details.map(detail => (
+            <div>
+              <img className="recipe-thumb" src={detail.strDrinkThumb} alt={detail.strDrink}/>
+              <h1>{detail.strDrink}</h1>
+              <p><b>Alcoholic/Non-Alcoholic: </b>{detail.strAlcoholic}</p>
+              <p><b>Glass: </b>{detail.strGlass}</p>
+              <p><b>Instructions: </b>{detail.strInstructions}</p>
+              <p><b>Ingredients: </b></p>
+              <ul>
+                <li>{detail.strMeasure1}{detail.strIngredient1}</li>
+                <li>{detail.strMeasure2}{detail.strIngredient2}</li>
+                <li>{detail.strMeasure3}{detail.strIngredient3}</li>
+                <li>{detail.strMeasure4}{detail.strIngredient4}</li>
+                <li>{detail.strMeasure5}{detail.strIngredient5}</li>
+                <li>{detail.strMeasure6}{detail.strIngredient6}</li>
+                <li>{detail.strMeasure7}{detail.strIngredient7}</li>
+                <li>{detail.strMeasure8}{detail.strIngredient8}</li>
+                <li>{detail.strMeasure9}{detail.strIngredient9}</li>
+                <li>{detail.strMeasure10}{detail.strIngredient10}</li>
+                <li>{detail.strMeasure11}{detail.strIngredient11}</li>
+                <li>{detail.strMeasure12}{detail.strIngredient12}</li>
+                <li>{detail.strMeasure13}{detail.strIngredient13}</li>
+                <li>{detail.strMeasure14}{detail.strIngredient14}</li>
+                <li>{detail.strMeasure15}{detail.strIngredient15}</li>
+              </ul>
+
+            </div>
+          ))}
+        </div>
+       </Modal>
 
           <h3>Favorites</h3>
 
@@ -181,7 +265,9 @@ class Favorite extends Component {
                   title={drink.strDrink}
                   image={drink.strDrinkThumb}
                   id={drink.idDrink}
-                  handleClick={this.addTofavorites}
+                  displayDrinkById={this.displayDrinkById}
+
+                  
                 />
               ))}
             </Col>
