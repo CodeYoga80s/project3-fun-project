@@ -38,7 +38,7 @@ class SignInFormBase extends Component {
 
   hideModal = () => {
     this.setState({ visible: false });
-    this.props.history.push(ROUTES.LANDING);
+    this.props.history.goBack();
     
   };
 
@@ -49,7 +49,7 @@ class SignInFormBase extends Component {
       .doSignInWithEmailAndPassword(email, password)
       .then(() => {
         this.setState({ ...INITIAL_STATE });
-        this.props.history.push(ROUTES.LANDING);
+        this.props.history.goBack();
       })
       .catch(error => {
         this.setState({ error : "Invalid Username and/or Password" });

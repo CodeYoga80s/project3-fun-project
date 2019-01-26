@@ -245,7 +245,7 @@ class SearchResults extends Component {
                     image={drink.strDrinkThumb}
                     id={drink.idDrink}
                     displayDrinkById={this.displayDrinkById}
-                    addTofavorites={this.addTofavorites}
+              
                   />
                 ))
                 }

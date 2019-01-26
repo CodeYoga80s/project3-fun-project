@@ -37,7 +37,7 @@ class SignUpFormBase extends Component {
 
   hideModal = () => {
     this.setState({ visible: false });
-    this.props.history.push(ROUTES.LANDING);
+    this.props.history.goBack();
   };
 
   onSubmit = event => {
@@ -47,7 +47,7 @@ class SignUpFormBase extends Component {
       .doCreateUserWithEmailAndPassword(email, passwordOne)
       .then(authUser => {
         this.setState({ ...INITIAL_STATE });
-        this.props.history.push(ROUTES.LANDING);
+        this.props.history.goBack();
       })
       .catch(error => {
         this.setState({ error });

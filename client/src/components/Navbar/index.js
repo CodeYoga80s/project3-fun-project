@@ -27,7 +27,7 @@ function Navbar({ authUser }){
             </Link> */}
             <div>{authUser ? <SignOutButton /> : <Link
               to="/signin"
-              className={window.location.pathname === "/" ? "nav-link active" : "nav-link"}
+              className={window.location.pathname === "/" ? "nav-link active navbar-brand" : "nav-link navbar-brand"}
             >
               Sign In
             </Link>}</div>
@@ -36,7 +36,7 @@ function Navbar({ authUser }){
           <li className="nav-item">
             <Link
               to="/favorites"
-              className={window.location.pathname === "/favorites" ? "nav-link active" : "nav-link"}
+              className={window.location.pathname === "/favorites" ? "nav-link active navbar-brand" : "nav-link navbar-brand"}
             >
               Favorites
             </Link>
