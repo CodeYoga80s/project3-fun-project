@@ -121,17 +121,21 @@ class SignUpFormBase extends Component {
           placeholder="Password"
         />
         </FormGroup>
-          <Button
+          {/* <Button
             block
             bsSize="large"
             disabled={isInvalid}
             type="submit"
           >
             Sign Up
-          </Button>
+          </Button> */}
           <br></br>
 
           {error && <p>{error.message}</p>}
+
+          <button disabled={isInvalid} type="submit">
+          Sign Up
+        </button>
 
       </form>
       </div>
