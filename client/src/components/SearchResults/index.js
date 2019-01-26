@@ -13,10 +13,6 @@ import Modal from 'react-awesome-modal';
 import Favorite from "../Favorite"
 import './style.css'
 
-{/*image: "",*/}
-{/*, title: res.data.drinks.strDrink, image: res.data.drinks.strDrinkThumb, idDrink: res.data.drinks.idDrink*/}
-{/*{title: res.data.drinks[0].strDrink, image: res.data.drinks[0].strDrinkThumb}*/}
-
 class SearchResults extends Component {
 
   state = {
@@ -116,7 +112,6 @@ class SearchResults extends Component {
   }
 
   addTofavorites = event => {
-    // event.preventDefault();
     this.checkUser();
     if(this.state.userID){
     console.log(event);
@@ -146,21 +141,7 @@ class SearchResults extends Component {
     this.setState({ isDetailModalOpen: false });
   };
 
-/* 
-  handleChange({target}) {
-    this.setState({
-      title: target.value
-    });
-  }; */
-
-
-  // How to get ID
-  /* {this.props.match.params.id} */
-
-
   render() {
-    /* console.log("this.state.drinks = " + this.state.drinks);
-    console.log("this.state.drinks.length = " + this.state.drinks.length); */
     console.log("this.state.details = " + this.state.details);
     return (
       <div className="App">
@@ -180,11 +161,9 @@ class SearchResults extends Component {
           </div>
         </div>
 
-        {/* {this.props.match.params.id} */}
-        
         <div className="container">
 
-       <Modal visible={this.state.isModalOpen} width="400" height="400" effect="fadeInUp" onClickAway={() => this.closeModal()}><SignIn ></SignIn> </Modal> 
+       <Modal className="sign-in-modal" visible={this.state.isModalOpen} width="400" height="400" effect="fadeInUp" onClickAway={() => this.closeModal()}><SignIn ></SignIn> </Modal> 
 
        <Modal className="detail-modal" visible={this.state.isDetailModalOpen} width="600" height="0" effect="fadeInUp" onClickAway={() => this.closeDetailModal()}> 
         <div  className="modal-content">
