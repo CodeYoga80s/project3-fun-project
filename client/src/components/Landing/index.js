@@ -57,27 +57,23 @@ componentWillUnmount() {
             style={{ fontsize: 55, clear: "both", textAlign: "center" }}
     className="display-4">IMBIBE</h1>
             <p className="lead">Drink Recipes for the Homegrown Mixologist.</p>
+
+            <div className="container">
+              <h3>Search by...</h3>
+                <div>
+                  <button>
+                    <Link to="/search-results/drinks">Drink Name</Link>
+                  </button>
+                </div>
+                  <div>
+                  <button>
+                    <Link to="/search-results/ingredient">Ingredient Name</Link>
+                  </button>
+                </div>
+              </div>
+
           </div>
         </div>
-
-        
-        <div className="container">
-
-          <h3>Search by...</h3>
-            <div>
-              <button>
-                <Link to="/search-results/drinks">Drink Name</Link>
-              </button>
-            </div>
-              <div>
-
-              <button>
-                <Link to="/search-results/ingredient">Ingredient Name</Link>
-              </button>
-              </div>
-        </div>
-
-      
       </div>
     );
   }

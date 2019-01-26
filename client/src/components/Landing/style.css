@@ -1,3 +1,13 @@
+body {
+  font-family: 'Playfair Display SC', serif;
+  text-shadow: 2px 2px 4px black, 0 0 25px rgb(111, 28, 150);
+}
+
+.jumbotron {
+  margin-bottom: 10px !important;
+  padding-bottom: 15px !important;
+}
+
 button {
   border-radius: 10px;
   padding: 10px;
@@ -29,6 +39,14 @@ h3{
   background-color:rgba(0,0,0, 0.4);
   margin-right: 350px;
   margin-left: 350px;
+}
+
+button {
+  margin: 25px !important;
+  background: radial-gradient(ellipse farthest-corner at right bottom, #FEDB37 0%, #FDB931 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%),
+              radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1B464 25%, #5d4a1f 62.5%, #5d4a1f 100%);
+  font-weight: 800;
+  width: 160px;
 }
 
 
