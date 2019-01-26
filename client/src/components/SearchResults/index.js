@@ -9,6 +9,7 @@ import Card from "../Card";
 import firebase from 'firebase';
 import SignIn from "../SignIn";
 import Modal from 'react-awesome-modal';
+
 import Favorite from "../Favorite"
 import './style.css'
 
@@ -185,16 +186,16 @@ class SearchResults extends Component {
 
        <Modal visible={this.state.isModalOpen} width="400" height="400" effect="fadeInUp" onClickAway={() => this.closeModal()}><SignIn ></SignIn> </Modal> 
 
-       <Modal className="detail-modal" visible={this.state.isDetailModalOpen} width="400" height="0" effect="fadeInUp" onClickAway={() => this.closeDetailModal()}> 
+       <Modal className="detail-modal" visible={this.state.isDetailModalOpen} width="600" height="0" effect="fadeInUp" onClickAway={() => this.closeDetailModal()}> 
         <div  className="modal-content">
           {this.state.details.map(detail => (
-            <div>
-              <img className="recipe-thumb" src={detail.strDrinkThumb} alt={detail.strDrink}/>
-              <h1>{detail.strDrink}</h1>
-              <p><b>Alcoholic/Non-Alcoholic: </b>{detail.strAlcoholic}</p>
-              <p><b>Glass: </b>{detail.strGlass}</p>
-              <p><b>Instructions: </b>{detail.strInstructions}</p>
-              <p><b>Ingredients: </b></p>
+            <div className="modal-position">
+              <img className="recipe-thumb .d-md-none .d-lg-block" src={detail.strDrinkThumb} alt={detail.strDrink}/>
+              <h2>{detail.strDrink}</h2>
+              <p className="p-details">{detail.strAlcoholic}</p>
+              <p className="p-details"><b>Glass: </b>{detail.strGlass}</p>
+              <p className="p-details"><b>Instructions: </b>{detail.strInstructions}</p>
+              <p className="p-details"><b>Ingredients: </b></p>
               <ul>
                 <li>{detail.strMeasure1}{detail.strIngredient1}</li>
                 <li>{detail.strMeasure2}{detail.strIngredient2}</li>
