@@ -168,6 +168,14 @@ class SearchResults extends Component {
           <div className="container">
             <h1 className="display-4">Recipe Results</h1>
             <p className="lead">Now Mix It, Mix It Real Good.</p>
+
+            <h3>What can I get for you?</h3>
+            <form>
+              <input type="text" name="searchInput" placeholder="Enter here..." id="ingredient-search" value={this.state.searchInput} onChange={this.handleChange}/>
+            </form>
+
+            <button type="submit" onClick={this.chooseSearch}>Search</button>
+
           </div>
         </div>
 
@@ -210,14 +218,6 @@ class SearchResults extends Component {
         </div>
        </Modal>
 
-          <h3>What can I get for you?</h3>
-
-          <form>
-            <input type="text" name="searchInput" placeholder="Enter here..." id="ingredient-search" value={this.state.searchInput} onChange={this.handleChange}/>
-          </form>
-
-          <button type="submit" onClick={this.chooseSearch}>Search</button>
-
         </div>
 
         {this.state.noRecipes ? (
@@ -226,7 +226,7 @@ class SearchResults extends Component {
           <h3>Time to Mix!</h3>
         )}
 
-        <div className="search-results">
+        <div className="search-results d-flex justify-content-center">
 
           {this.state.drinks == null ? (
             <div>
