@@ -87,6 +87,10 @@ class SignUpFormBase extends Component {
         <Modal visible={this.state.visible} width="400" height="400" effect="fadeInUp" onClickAway={() => this.hideModal()}>
         <div className="SignUp">
       <form onSubmit={this.onSubmit}>
+
+      <FormGroup controlId="username" bsSize="large">
+        <ControlLabel>Email</ControlLabel>
+        <br></br>
         <input
           name="username"
           value={username}
@@ -94,14 +98,20 @@ class SignUpFormBase extends Component {
           type="text"
           placeholder="First Name"
         />
-        <br></br>
-        <input
-          name="email"
-          value={email}
-          onChange={this.onChange}
-          type="text"
-          placeholder="Email Address"
-        />
+        </FormGroup>
+        <FormGroup controlId="email" bsSize="large">
+          <ControlLabel>Password</ControlLabel>
+          <br></br>
+          <input
+            name="email"
+            value={email}
+            onChange={this.onChange}
+            type="text"
+            placeholder="Email Address"
+          />
+        </FormGroup>
+        <FormGroup controlId="passwordOne" bsSize="large">
+        <ControlLabel>Password</ControlLabel>
         <br></br>
         <input
           name="passwordOne"
@@ -110,12 +120,19 @@ class SignUpFormBase extends Component {
           type="password"
           placeholder="Password"
         />
-        <br></br>
-        <button disabled={isInvalid} type="submit">
-          Sign Up
-        </button>
+        </FormGroup>
+          <Button
+            block
+            bsSize="large"
+            disabled={isInvalid}
+            type="submit"
+          >
+            Sign Up
+          </Button>
+          <br></br>
 
-        {error && <p>{error.message}</p>}
+          {error && <p>{error.message}</p>}
+
       </form>
       </div>
       </Modal>
@@ -125,7 +142,7 @@ class SignUpFormBase extends Component {
 }
 
 const SignUpLink = () => (
-  <p>
+  <p className="p-signup">
     Don't have an account? <Link to="/signup">Sign Up</Link>
   </p>
 );

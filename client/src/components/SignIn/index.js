@@ -68,48 +68,49 @@ class SignInFormBase extends Component {
     const isInvalid = password === '' || email === '';
 
     return (
-  <div>
-      <Modal visible={this.state.visible} width="400" height="400" effect="fadeInUp" onClickAway={() => this.hideModal()}>
+    <div>
+
+      <Modal className="login-modal" visible={this.state.visible} width="400" height="400" effect="fadeInUp" onClickAway={() => this.hideModal()}>
       <div className="ErrorMessage">{error}</div>
-      <div className="Login">
-      <form onSubmit={this.onSubmit}>
+        <div className="Login">
+        <form onSubmit={this.onSubmit}>
           <FormGroup controlId="email" bsSize="large">
             <ControlLabel>Email</ControlLabel>
             <br></br>
             <input
-          name="email"
-          value={email}
-          onChange={this.onChange}
-          type="text"
-          placeholder="Email Address"
-        />
+              name="email"
+              value={email}
+              onChange={this.onChange}
+              type="text"
+              placeholder="Email Address"
+          />
           </FormGroup>
           <FormGroup controlId="password" bsSize="large">
             <ControlLabel>Password</ControlLabel>
             <br></br>
             <input
-          name="password"
-          value={password}
-          onChange={this.onChange}
-          type="password"
-          placeholder="Password"
-        />
+              name="password"
+              value={password}
+              onChange={this.onChange}
+              type="password"
+              placeholder="Password"
+          />
           </FormGroup>
           <Button
-            block
-            bsSize="large"
-            disabled={isInvalid}
-            type="submit"
-          >
-            Login
+              block
+              bsSize="large"
+              disabled={isInvalid}
+              type="submit"
+            >
+              Login
           </Button>
           <br></br>
           <SignUpLink />
         </form>
-        
+      
     </div>
     </Modal>
-    </div>
+  </div>
     );
   }
 }
