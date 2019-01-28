@@ -1,6 +1,6 @@
 body {
   font-family: 'Playfair Display SC', serif;
-  text-shadow: 2px 2px 4px black, 0 0 25px rgb(111, 28, 150);
+  text-shadow: 2px 2px 4px black, 0 0 25px #6f1c96;
 }
 
 .jumbotron {
@@ -20,32 +20,28 @@ a {
 }
 
 h1 {
-font-family: 'Playfair Display SC', serif;
-font-size: 50px;
+  font-family: 'Playfair Display SC', serif;
+  font-size: 50px;
 }
 
-p{
+p {
   font-family: 'Bad Script', cursive;
   font-size: 35px;
 }
 
-h3{
+h3 {
   color: white;
-  
 }
 
 .App {
   margin-top: 25px;
-  background-color:rgba(0,0,0, 0.4);
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 button {
   margin: 25px !important;
-  background: radial-gradient(ellipse farthest-corner at right bottom, #FEDB37 0%, #FDB931 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%),
-              radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1B464 25%, #5d4a1f 62.5%, #5d4a1f 100%);
+  background: radial-gradient(ellipse farthest-corner at right bottom, #FEDB37 0%, #FDB931 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%), radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1B464 25%, #5d4a1f 62.5%, #5d4a1f 100%);
   font-weight: 800;
   width: 160px;
 }
-
-
-
+/*# sourceMappingURL=style.css.map */

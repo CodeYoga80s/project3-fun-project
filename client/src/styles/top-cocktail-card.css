@@ -2,25 +2,31 @@
   position: relative;
   width: 80%;
 }
+
 .cocktail-card {
   max-width: 300px;
 }
+
 .image {
   opacity: 1;
   display: block;
   width: 100%;
   height: auto;
+  -webkit-transition: .5s ease;
   transition: .5s ease;
-  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
 }
 
 .middle {
+  -webkit-transition: .5s ease;
   transition: .5s ease;
   opacity: 0;
   position: absolute;
   top: 40%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   text-align: center;
   width: 300px;
@@ -28,7 +34,7 @@
 
 .cocktail-card:hover .image {
   color: #ffffff;
-  background-color: rgba(0,0,0,0.7) !important;
+  background-color: rgba(0, 0, 0, 0.7) !important;
 }
 
 .cocktail-card:hover .middle {
@@ -37,28 +43,24 @@
 
 .text {
   color: white;
-  text-shadow: 2px 2px 2px rgb(22, 22, 22);
+  text-shadow: 2px 2px 2px #161616;
   font-size: 24px;
   padding: 12px 18px;
 }
 
-
 /* Icon Buttons: will move to icon Buttons CSS */
-
 .icon-button {
   background-color: Transparent;
-  background-repeat:no-repeat;
+  background-repeat: no-repeat;
   border: none;
-  cursor:pointer;
+  cursor: pointer;
   overflow: hidden;
-  outline:none;
+  outline: none;
 }
 
 /* Recipe Modal: will move to Recipe Modal CSS */
-
 .modal-content {
   color: #ffffff;
-  background-color: rgba(0,0,0,0.7) !important;
+  background-color: rgba(0, 0, 0, 0.7) !important;
 }
-
-
+/*# sourceMappingURL=top-cocktail-card.css.map */
