@@ -33,8 +33,6 @@ The app will look like the image below:
 
 <h2>Presentation</h2>
 
-<iframe src="https://app.emaze.com/@AOCRCTOZF/imbibe" width="960px" height="540px" seamless webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe><a href="https://www.emaze.com" target="_blank"><img src="//resources.emaze.com/mypres/css/images/embed.png" alt="Powered by emaze" style="margin: 5px; border: none;"></a>
-
 
 Check out Presentation <a href="https://www.emaze.com/@AOCRCTOZF/imbibe" target="_blank">here</a>.
  
